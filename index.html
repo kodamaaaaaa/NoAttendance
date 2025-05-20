@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>未出席者</title>
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #f4f6f9;
+  color: #333;
+}
 
+h1 {
+  text-align: center;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  margin: 5px;
+}
+
+.filled {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+</style>
+</head>
+<body>
+<h1>未出席者</h1>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>氏名</th>
+<th>氏名</th>
+<th>氏名</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>山田安奈</td>
+<td>佐藤美咲</td>
+<td>鈴木健一</td>
+</tr>
+<tr>
+<td>田中花子</td>
+<td>渡辺太郎</td>
+<td>渡辺健</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<script>
+function toggleButton(button) {
+  const row = button.closest('tr');
+  const buttons = row.querySelectorAll('.button');
+
+  if (button.classList.contains('filled')) {
+    button.classList.remove('filled');
+  } else {
+    buttons.forEach(b => b.classList.remove('filled'));
+    button.classList.add('filled');
+  }
+}
+</script>
+</body>
+</html>
