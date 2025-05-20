@@ -1,0 +1,2 @@
+# NoAttendance
+to use class
