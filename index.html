@@ -29,7 +29,7 @@ table {
 
 th, td {
   padding: 12px 20px;
-  text-align: center;
+  text-align: left;
   border: 1px solid #ddd;
   vertical-align: middle;
 }
@@ -37,97 +37,84 @@ th, td {
 th {
   background-color: #3498db;
   color: white;
+  text-align: center;
 }
 
 .button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  background-color: #fff;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-  margin: 5px;
 }
 
-.filled {
-  background-color: #3498db;
-  border-color: #3498db;
+.button:hover {
+  background-color: #c0392b;
 }
 
 .table-container {
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
   overflow-x: auto;
 }
 
-.name-cell {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.name-cell span {
-  flex: 1;
-  text-align: left;
-}
-
-.name-cell button {
-  padding: 4px 8px;
-  margin-left: 10px;
-  font-size: 12px;
+.center {
+  text-align: center;
+  margin-top: 20px;
 }
 </style>
 </head>
 <body>
 <h1>未出席者</h1>
 <div class="table-container">
-<table id="nameTable">
-<thead>
-<tr>
-<th>氏名</th>
-<th>氏名</th>
-<th>氏名</th>
-</tr>
-</thead>
-<tbody id="tableBody">
-  
-</tbody>
-</table>
+  <table id="nameTable">
+    <thead>
+      <tr>
+        <th>氏名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- JavaScriptで生成 -->
+    </tbody>
+  </table>
 </div>
 
-<div style="text-align: center; margin-top: 20px;">
-  <button onclick="refreshTable()">Refresh</button>
+<div class="center">
+  <button class="button" onclick="refreshTable()">Refresh</button>
 </div>
 
 <script>
 const originalNames = [
-  ["山田安奈", "佐藤美咲", "鈴木健一"],
-  ["田中花子", "渡辺太郎", "渡辺健"]
+  "山田安奈",
+  "佐藤美咲",
+  "鈴木健一",
+  "田中花子",
+  "渡辺太郎",
+  "渡辺健"
 ];
 
-function createTable(data) {
+function createTable(names) {
   const tbody = document.getElementById("tableBody");
-  tbody.innerHTML = ""; // Clear
+  tbody.innerHTML = ""; // 既存データクリア
 
-  data.forEach(row => {
+  names.forEach(name => {
     const tr = document.createElement("tr");
 
-    row.forEach(name => {
-      const td = document.createElement("td");
-      td.classList.add("name-cell");
+    const nameTd = document.createElement("td");
+    nameTd.textContent = name;
 
-      const nameSpan = document.createElement("span");
-      nameSpan.textContent = name;
+    const actionTd = document.createElement("td");
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.className = "button";
+    deleteBtn.onclick = () => tr.remove();
 
-      const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = `Delete ${name}`;
-      deleteBtn.onclick = () => td.remove();
-
-      td.appendChild(nameSpan);
-      td.appendChild(deleteBtn);
-      tr.appendChild(td);
-    });
+    actionTd.appendChild(deleteBtn);
+    tr.appendChild(nameTd);
+    tr.appendChild(actionTd);
 
     tbody.appendChild(tr);
   });
