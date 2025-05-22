@@ -1,135 +1,121 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>未出席者</title>
-<style>
-body {
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
-  background-color: #f4f6f9;
-  color: #333;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>未出席者</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      padding: 20px;
+      background-color: #f4f6f9;
+      color: #333;
+    }
 
-h1 {
-  text-align: center;
-  font-size: 24px;
-  color: #2c3e50;
-}
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #2c3e50;
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-th, td {
-  padding: 12px 20px;
-  text-align: left;
-  border: 1px solid #ddd;
-  vertical-align: middle;
-}
+    th, td {
+      padding: 12px 20px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
 
-th {
-  background-color: #3498db;
-  color: white;
-  text-align: center;
-}
+    th {
+      background-color: #3498db;
+      color: white;
+      text-align: center;
+    }
 
-.button {
-  padding: 8px 16px;
-  font-size: 14px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 5px;
-}
+    .button {
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
 
-.button:hover {
-  background-color: #2980b9;
-}
+    .button:hover {
+      background-color: #2980b9;
+    }
 
-.center {
-  text-align: center;
-  margin-top: 20px;
-}
-</style>
+    .center {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-<h1>未出席者</h1>
-<div class="table-container">
-  <table id="nameTable">
-    <thead>
-      <tr>
-        <th>選択</th>
-        <th>氏名</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody">
-      <!-- JavaScriptで生成 -->
-    </tbody>
-  </table>
-</div>
+  <h1>未出席者</h1>
+  <div class="table-container">
+    <table id="nameTable">
+      <thead>
+        <tr>
+          <th>氏名</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- JavaScriptで生成 -->
+      </tbody>
+    </table>
+  </div>
 
-<div class="center">
-  <button class="button" onclick="deleteSelected()">Delete</button>
-  <button class="button" onclick="refreshTable()">Refresh</button>
-</div>
+  <div class="center">
+    <button class="button" onclick="deleteRandom()">Delete</button>
+    <button class="button" onclick="refreshTable()">Refresh</button>
+  </div>
 
-<script>
-const originalNames = [
-  "山田安奈",
-  "佐藤美咲",
-  "鈴木健一",
-  "田中花子",
-  "渡辺太郎",
-  "渡辺健"
-];
+  <script>
+    const originalNames = [
+      "山田安奈",
+      "佐藤美咲",
+      "鈴木健一",
+      "田中花子",
+      "渡辺太郎",
+      "渡辺健"
+    ];
 
-function createTable(names) {
-  const tbody = document.getElementById("tableBody");
-  tbody.innerHTML = ""; // テーブル初期化
-
-  names.forEach(name => {
-    const tr = document.createElement("tr");
-
-    const checkboxTd = document.createElement("td");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.className = "rowCheckbox";
-    checkboxTd.appendChild(checkbox);
-
-    const nameTd = document.createElement("td");
-    nameTd.textContent = name;
-
-    tr.appendChild(checkboxTd);
-    tr.appendChild(nameTd);
-
-    tbody.appendChild(tr);
-  });
-}
-
-function deleteSelected() {
-  const checkboxes = document.querySelectorAll(".rowCheckbox");
-  checkboxes.forEach(cb => {
-    if (cb.checked) {
-      cb.closest("tr").remove();
+    function createTable(names) {
+      const tbody = document.getElementById("tableBody");
+      tbody.innerHTML = "";
+      names.forEach(name => {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.textContent = name;
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+      });
     }
-  });
-}
 
-function refreshTable() {
-  createTable(originalNames);
-}
+    function deleteRandom() {
+      const tbody = document.getElementById("tableBody");
+      const rows = tbody.querySelectorAll("tr");
+      if (rows.length === 0) return;
 
-window.onload = refreshTable;
-</script>
+      const randomIndex = Math.floor(Math.random() * rows.length);
+      rows[randomIndex].remove();
+    }
+
+    function refreshTable() {
+      createTable(originalNames);
+    }
+
+    window.onload = refreshTable;
+  </script>
 </body>
 </html>
-
