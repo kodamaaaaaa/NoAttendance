@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>未出席者</title>
+  <title>NOT ATTENDING</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family:'Arial', sans-serif;
       padding: 20px;
       background-color: #eef2f7;
       color: #333;
@@ -87,34 +87,47 @@
   </style>
 </head>
 <body>
-  <h1>未出席者</h1>
+  <h1>NOT ATTENDING</h1>
 
   <div class="table-container">
     <table id="nameTable">
       <thead>
         <tr>
-          <th>氏名</th>
+          <th>Students ID Number</th>
         </tr>
       </thead>
       <tbody id="tableBody">
-        <!-- JavaScriptで挿入 -->
       </tbody>
     </table>
   </div>
 
   <div class="controls">
-    <button class="button" onclick="deleteRandom()">削除（ランダム）</button>
-    <button class="button" onclick="refreshTable()">リセット</button>
+    <button class="button" onclick="deleteRandom()">Delete</button>
+    <button class="button" onclick="refreshTable()">Refresh</button>
   </div>
 
   <script>
     const originalNames = [
-      "山田安奈",
-      "佐藤美咲",
-      "鈴木健一",
-      "田中花子",
-      "渡辺太郎",
-      "渡辺健"
+      "TK240000", 
+      "TK240001", 
+      "TK240002", 
+      "TK240003",
+      "TK240004",
+      "TK240005", 
+      "TK240006", 
+      "TK240007", 
+      "TK240008", 
+      "TK240009",
+      "TK240010", 
+      "TK240011",
+      "TK240012",
+      "TK240013", 
+      "TK240014",
+      "TK240015", 
+      "TK240016",
+      "TK240017",
+      "TK240018", 
+      "TK240019"
     ];
 
     function createTable(names) {
